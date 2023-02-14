@@ -1,0 +1,20 @@
+
+
+  .items{
+    display: flex;
+    flex-direction: column;
+    
+    width: 60%;
+  }
+
+  input[type="text"] {
+    width: 150px;
+   
+  }
+
+  
+  input[type="submit"] {
+    width: 50px;
+    border-color: white;
+    border-radius: 25px;
+  }

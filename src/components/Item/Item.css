@@ -1,0 +1,16 @@
+article{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  
+  article button{
+    height: 20px;
+    
+  }
+
+  button{
+    
+    border: 10px;
+  }
