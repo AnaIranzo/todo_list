@@ -12,13 +12,13 @@ class List extends Component {
         }
     }
 
-    
+
 
     printItem = () => {
-     return <section className='items'>
-        {this.state.items.map((item,i) =>
-        <Item data={item} 
-        delete={()=> this.deleteItem(i)} key={uuidv4()}/> )}
+        return <section className='items'>
+            {this.state.items.map((item,i) =>
+            <Item data={item} 
+            delete={()=> this.deleteItem(i)} key={uuidv4()}/> )}
         
         </section>
     }
