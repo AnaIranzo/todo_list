@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Item from '../Item/Item';
+import Item from './Item/Item';
 import { v4 as uuidv4 } from 'uuid';
-import data from '../../tareas.json';
+import data from '../../../tareas.json';
 import './List.css'
 
 class List extends Component {
@@ -49,8 +49,12 @@ class List extends Component {
         this.setState({items:data})
     }
 
-
-
+    handleChange = (event) => {
+        if (event) {
+           
+        }
+    }
+    
     render() {
         return <section className='container'>
         <section>
@@ -59,7 +63,7 @@ class List extends Component {
         </section>
         <section>
         <form onSubmit={this.handleSubmit}>
-            <input type="text" name='item'/>
+            <input type="text" name='item' onChange={this.handleChange}/>
             <input type="submit" value="Add" />
         
         </form>
