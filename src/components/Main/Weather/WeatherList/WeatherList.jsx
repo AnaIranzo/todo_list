@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WeatherCard from "./WeatherCard/WeatherCard";
+import { v4 as uuidv4 } from 'uuid';
 import './WeatherList'
 
 class WeatherList extends Component {
@@ -18,7 +19,7 @@ class WeatherList extends Component {
     
     
 
-    <section>{this.state.weatherList.map((weather) => <WeatherCard data={weather}/> )}</section> 
+    <section>{this.state.weatherList.map((weather) => <WeatherCard data={weather} key={uuidv4()}/> )}</section> 
     
     
     </>

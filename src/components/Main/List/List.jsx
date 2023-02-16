@@ -9,9 +9,15 @@ class List extends Component {
         super(props)
         this.state ={
             items : data,
+            showButton: false,
+            inputData: '',
+            newTask:''
         }
-    }
 
+        this.inputData = React.createRef(); 
+
+    }
+        
 
 
     printItem = () => {
@@ -32,13 +38,27 @@ class List extends Component {
         event.preventDefault();
         
         const todo = event.target.item.value;
-        const newTodo = {
-            todo
+        if (todo.length >= 6) {
+            const newTodo = {
+                todo
+            }
+            //alert(newItem)
+            this.setState({items:[...this.state.items, newTodo]});
+            this.setState({showButton:false});
+    
+            event.target.item.value = ''
+            this.setState({newTask:'Tarea añadida'});
+            setTimeout(()=> {
+                    
+                this.setState({newTask:''});
+                
+                
+            },5000)
+        }else{
+            alert('Tarea demasiado corta')
         }
-        //alert(newItem)
-        this.setState({items:[...this.state.items, newTodo]});
+       
 
-        event.target.item.value = ''
     }
 
     handleClear = () => {
@@ -51,7 +71,17 @@ class List extends Component {
 
     handleChange = (event) => {
         if (event) {
-
+            this.setState({showButton:true});
+            setTimeout(()=> {
+                
+                this.setState({showButton:false})
+                this.setState({inputData:''})
+                
+                
+                
+            },20000)
+        }else{
+            
         }
     }
     
@@ -64,10 +94,11 @@ class List extends Component {
         </section>
         <section>
         <form onSubmit={this.handleSubmit}>
-            <input type="text" name='item' onChange={this.handleChange}/>
-            <input type="submit" value="Add" />
+            <input type="text" name='item' onChange={this.handleChange} ref={this.inputData}/>
+            <input type="submit" value="Add" hidden={this.state.showButton?false:true}/>
         
         </form>
+            <p>{this.state.newTask}</p>
         </section>
         
         {this.printItem()}
