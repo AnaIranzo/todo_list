@@ -18,22 +18,13 @@ class Weather extends Component {
   }
 
   async componentDidMount(){
-    
     await this.handleLoadWeather();
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log("****DATOS DEL PASADO****");
-    console.log('prevProps: ', prevProps, 'prevState: ', prevState)
+  
     
-    console.log("****DATOS DEL PRESENTE****");
-    console.log("++PROPS++");
-    console.log(this.props);
-    
-    console.log("++STATE++");
-    console.log(this.state);
-    // length será 0, 5 o 20
-      if(this.state.cityName !== prevState.cityName){
+      if(this.state.cityName !== prevState.cityName && this.state.cityName.length >0){
       this.setState({cityName:this.state.cityName});
       this.handleLoadWeather();
     }
@@ -42,11 +33,24 @@ class Weather extends Component {
 }
 
   handleLoadWeather = async () => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.cityName}&appid=${process.env.REACT_APP_API_KEY_W}&units=metric`);
-    const data = await response.json();
-    this.setState({
-      weather: data.list
-    })
+    try {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.cityName}&appid=${process.env.REACT_APP_API_KEY_W}&units=metric`);
+      const data = await response.json();
+      if (data.cod === '200') {
+        this.setState({
+          weather: data.list
+        })
+      }else {
+        alert('Error en la búsqueda')
+      this.setState({
+        weather: []
+      })
+      }
+      
+    } catch (error) {
+      alert('Error en la búsqueda')
+    }
+   
   }
 
   handleClick = async () => {

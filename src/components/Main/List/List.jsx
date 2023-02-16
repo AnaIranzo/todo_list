@@ -51,12 +51,13 @@ class List extends Component {
 
     handleChange = (event) => {
         if (event) {
-           
+
         }
     }
     
     render() {
         return <section className='container'>
+            <h2>To do List</h2>
         <section>
             <button onClick={this.handleClear}>Clear</button>
             <button onClick={this.handleReset}>Reset</button>

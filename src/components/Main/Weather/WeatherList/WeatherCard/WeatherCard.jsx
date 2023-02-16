@@ -11,7 +11,7 @@ class WeatherCard extends Component {
     this.state = {
       weatherCard: this.props.data
     }
-    console.log(this.state.weatherCard);
+    //console.log(this.state.weatherCard);
     
   }
 
@@ -49,8 +49,6 @@ class WeatherCard extends Component {
     <p>{this.state.weatherCard.main.temp} ºC</p>
     <p>{this.state.weatherCard.weather[0].description}</p>
     </>
-
-
   }
 }
 

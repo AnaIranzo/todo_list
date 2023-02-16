@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WeatherCard from "./WeatherCard/WeatherCard";
-import './WeatherList.css'
+import './WeatherList'
 
 class WeatherList extends Component {
   constructor(props){
