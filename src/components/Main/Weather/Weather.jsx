@@ -21,16 +21,25 @@ class Weather extends Component {
 
   async componentDidMount(){
     await this.handleLocation();
-    await this.handleLoadWeather();
+   
     
    
   }
 
   componentDidUpdate(prevProps, prevState){
   
-    
+      
+      if (this.state.lat !== prevState.lat) {
+        console.log(prevState.lat);
+
+       
+        this.setState({...this.state,lat: this.state.lat,lon: this.state.lon});
+        
+        this.handleLoadWeather();
+      }
       if(this.state.cityName !== prevState.cityName && this.state.cityName.length >0){
-      this.setState({cityName:this.state.cityName});
+      this.setState({...this.state,cityName:this.state.cityName});
+
       this.handleLoadWeather();
     }
     
@@ -81,36 +90,35 @@ class Weather extends Component {
 
   handleClick = async () => {
     // alert(this.cityName.current.value);
-    this.setState({cityName: this.cityName.current.value});
+    this.setState({...this.state,cityName: this.cityName.current.value});
+    
     console.log(this.cityName);
   }
 
+
   handleLocation = async () => {
-  navigator.geolocation.getCurrentPosition(success,error);
-    let latCoord = 0
-    let lonCoord = 0
-  function success(position) {
-    console.log(position);
-    console.log('Latitude:', position.coords.latitude);
-    console.log('Longitude:', position.coords.longitude);
-    latCoord = position.coords.latitude
-    lonCoord = position.coords.longitude
+
+
+  if (navigator.geolocation) { //check if geolocation is available
+    navigator.geolocation.getCurrentPosition((position)=>{
+      this.setState({...this.state,lat: position.coords.latitude,lon: position.coords.longitude});
     
-  }
 
-  this.setState({lat: latCoord});
-  this.setState({lon: lonCoord});
+    });   
+}
 
-  
-  function error() {
-    console.log('Geolocation error!');
-  }
+
 }
 
 
 
 
+
+
+
   render() {
+
+
     return <>
     <h2>Weather</h2>
     <input type="text" name="" id="" ref={this.cityName} />

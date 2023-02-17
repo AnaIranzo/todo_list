@@ -79,7 +79,7 @@ class List extends Component {
                 
                 
                 
-            },20000)
+            },2000)
         }else{
             
         }
