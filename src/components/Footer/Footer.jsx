@@ -17,17 +17,18 @@ class Footer extends Component {
 
   async componentDidMount(){
     await this.handleLocation();
-    await this.handleLoadWeather();
-    await this.handleIcon();
+    
+    
     
   }
 
   componentDidUpdate(prevProps, prevState){
-  /* 
+      this.handleIcon();
       if (this.state.lat !== prevState.lat) {
         this.setState({...this.state,lat: this.state.lat,lon: this.state.lon});
-        //this.handleLoadWeather();
-      } */
+        this.handleLoadWeather();
+        
+      }
     
     
 }
@@ -91,9 +92,9 @@ handleIcon = async () => {
   render() {
     console.log(this.state.weather);
     return <footer>
-      <h2>To do list footer</h2>
+    
 
-    <section> 
+    <section className="footer-container"> 
       <p>{this.state.weather.length >0?this.state.weather[0].main.temp: ''} ºC</p>
       <img src={this.state.weatherIcon} alt="" />
       <p>{this.state.weather.length >0?this.state.weather[0].weather[0].description:''}</p>

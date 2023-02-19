@@ -1,0 +1,5 @@
+@import '../utils/mixins.scss';
+
+.weather-container{
+    @include column-center
+}

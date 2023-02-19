@@ -1,0 +1,11 @@
+
+@import '../utils/mixins.scss';
+
+.footer-container{
+    @include row-center;
+    color: black;
+}
+
+.footer-container img{
+    width: 50px;
+}

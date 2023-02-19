@@ -1,14 +1,20 @@
 import React, {Component} from "react";
-import './Item.css'
+
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 class Item extends Component {
 
 
     render() {
-        return <article>
+        return <section className="container">
+            <article className="task-container">
             <p>- {this.props.data.todo}</p>
-            <button onClick={this.props.delete}>Delete</button>
-        </article>
+            <IconButton aria-label="delete" size="large">
+                <DeleteIcon onClick={this.props.delete}/>
+            </IconButton>
+            </article>
+        </section>
     }
 }
 

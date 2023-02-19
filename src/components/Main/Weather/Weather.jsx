@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import WeatherList from "./WeatherList/WeatherList";
 import { v4 as uuidv4 } from 'uuid';
-import './Weather.css'
+
+
 
 
 //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={process.env.REACT_APP_API_KEY_W}&units=metric
@@ -103,8 +104,10 @@ class Weather extends Component {
   render() {
     return <>
     <h2>Weather</h2>
+    
+
     <input type="text" name="" id="" ref={this.cityName} />
-    <button onClick={this.handleClick}>Enviar</button>
+    <button onClick={this.handleClick} className='button'>Enviar</button>
     
     <h2>{this.state.cityName}</h2>
     <WeatherList data={this.state.weather} key={uuidv4()}/>

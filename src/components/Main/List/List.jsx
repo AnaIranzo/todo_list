@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import Item from './Item/Item';
 import { v4 as uuidv4 } from 'uuid';
 import data from '../../../tareas.json';
-import './List.css'
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+
 
 class List extends Component {
     constructor(props){
@@ -70,34 +75,41 @@ class List extends Component {
     }
 
     handleChange = (event) => {
-        if (event) {
-            this.setState({...this.state,showButton:true});
+     
+            this.setState({...this.state,showButton:true,inputData:event.target.value});
             setTimeout(()=> {
                 
-                this.setState({...this.state,showButton:false,inputData:''})
-               
+                this.setState({...this.state,showButton:false,inputData:""})
                 
                 
                 
-            },2000)
-        }else{
+            },20000)
+       
             
-        }
+        
     }
     
     render() {
         return <section className='container'>
             <h2>To do List</h2>
+    
+        <Stack direction="row" spacing={2}>
+        <Button variant="outlined" onClick={this.handleClear} className="Button">Clear</Button>
+        <Button variant="outlined" onClick={this.handleReset} className="Button">Reset</Button>
+        </Stack>
+
+        <Box component="form"sx={{'& > :not(style)': { m: 1, width: '25ch' },}} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+        <TextField id="outlined-basic" variant="outlined" name='item' onChange={this.handleChange} ref={this.inputData}/>
+      {/* <Button variant="outlined" type="submit" value="Add" style={{display: this.state.showButton?false:true}} className="Button">Add</Button> */}
+        <input type="submit" value="Add" hidden={this.state.showButton?false:true} id='submit'/> 
+    </Box>
         <section>
-            <button onClick={this.handleClear}>Clear</button>
-            <button onClick={this.handleReset}>Reset</button>
-        </section>
-        <section>
-        <form onSubmit={this.handleSubmit}>
-            <input type="text" name='item' onChange={this.handleChange} ref={this.inputData}/>
-            <input type="submit" value="Add" hidden={this.state.showButton?false:true}/>
+            
+        {/*  <form onSubmit={this.handleSubmit}>
+            <input type="text" name='item' onChange={this.handleChange} ref={this.inputData}/> 
+            
         
-        </form>
+        </form> */}
             <p>{this.state.newTask}</p>
         </section>
         
