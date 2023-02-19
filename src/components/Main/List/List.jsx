@@ -31,7 +31,7 @@ class List extends Component {
 
     deleteItem = (i) => {
         const remainingItems = this.state.items.filter((item,j)=> i !== j);
-        this.setState({items:remainingItems})
+        this.setState({...this.state,items:remainingItems})
     }
 
     handleSubmit = (event) => {
@@ -43,14 +43,14 @@ class List extends Component {
                 todo
             }
             //alert(newItem)
-            this.setState({items:[...this.state.items, newTodo]});
-            this.setState({showButton:false});
+            this.setState({items:[...this.state.items, newTodo],showButton:false});
+            
     
             event.target.item.value = ''
             this.setState({newTask:'Tarea añadida'});
             setTimeout(()=> {
                     
-                this.setState({newTask:''});
+                this.setState({...this.state,newTask:''});
                 
                 
             },5000)
@@ -62,20 +62,20 @@ class List extends Component {
     }
 
     handleClear = () => {
-        this.setState({items:[]});
+        this.setState({...this.state,items:[]});
     }
 
     handleReset = () => {
-        this.setState({items:data})
+        this.setState({...this.state,items:data})
     }
 
     handleChange = (event) => {
         if (event) {
-            this.setState({showButton:true});
+            this.setState({...this.state,showButton:true});
             setTimeout(()=> {
                 
-                this.setState({showButton:false})
-                this.setState({inputData:''})
+                this.setState({...this.state,showButton:false,inputData:''})
+               
                 
                 
                 

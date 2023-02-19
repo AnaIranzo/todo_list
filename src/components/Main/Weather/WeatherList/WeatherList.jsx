@@ -18,7 +18,6 @@ class WeatherList extends Component {
     return <>
     
     
-
     <section>{this.state.weatherList.map((weather) => <WeatherCard data={weather} key={uuidv4()}/> )}</section> 
     
     

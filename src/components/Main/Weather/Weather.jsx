@@ -21,29 +21,19 @@ class Weather extends Component {
 
   async componentDidMount(){
     await this.handleLocation();
-   
-    
-   
   }
 
   componentDidUpdate(prevProps, prevState){
   
-      
       if (this.state.lat !== prevState.lat) {
-        console.log(prevState.lat);
-
-       
         this.setState({...this.state,lat: this.state.lat,lon: this.state.lon});
-        
         this.handleLoadWeather();
       }
       if(this.state.cityName !== prevState.cityName && this.state.cityName.length >0){
-      this.setState({...this.state,cityName:this.state.cityName});
-
-      this.handleLoadWeather();
+        this.setState({...this.state,cityName:this.state.cityName});
+        this.handleLoadWeather();
     }
     
-    console.log('componentDidUpdate');
 }
 
   handleLoadWeather = async () => {
@@ -52,7 +42,7 @@ class Weather extends Component {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.cityName}&appid=${process.env.REACT_APP_API_KEY_W}&units=metric`);
         const data = await response.json();
         if (data.cod === '200') {
-          this.setState({
+          this.setState({...this.state,
             weather: data.list
           })
         }else {
@@ -70,12 +60,12 @@ class Weather extends Component {
         
         const data = await response.json();
         if (data.cod === '200') {
-          this.setState({
+          this.setState({...this.state,
             weather: data.list
           })
         }else {
           alert('Error en la búsqueda')
-        this.setState({
+        this.setState({...this.state,
           weather: []
         })
         }
@@ -85,7 +75,6 @@ class Weather extends Component {
       }
     }
     
-
   }
 
   handleClick = async () => {
@@ -97,18 +86,13 @@ class Weather extends Component {
 
 
   handleLocation = async () => {
-
-
   if (navigator.geolocation) { //check if geolocation is available
     navigator.geolocation.getCurrentPosition((position)=>{
       this.setState({...this.state,lat: position.coords.latitude,lon: position.coords.longitude});
     
-
-    });   
-}
-
-
-}
+      });   
+    }
+  }
 
 
 
@@ -117,8 +101,6 @@ class Weather extends Component {
 
 
   render() {
-
-
     return <>
     <h2>Weather</h2>
     <input type="text" name="" id="" ref={this.cityName} />
